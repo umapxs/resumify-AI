@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Resume;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -34,6 +35,15 @@ class DashboardController extends Controller
 
         $efficiencyPercentage = number_format($efficiencyPercentage, 1);
 
-        return view('dashboard', compact('totalResumes', 'averageLength', 'efficiencyPercentage'));
+        // Resumify count for today
+        $currentDate = Carbon::today();
+        $startDate = $currentDate->copy()->subDays(7)->startOfDay();
+        $endDate = $currentDate->endOfDay();
+
+        $resumesCount = Resume::whereBetween('created_at', [$startDate, $endDate])->count();
+
+
+
+        return view('dashboard', compact('totalResumes', 'averageLength', 'efficiencyPercentage', 'resumesCount'));
     }
 }

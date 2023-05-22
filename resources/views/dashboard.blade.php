@@ -45,8 +45,10 @@
                         </div>
 
                         <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md mt-8">
-                            <p class="font-thin">Resumify Last 10 Days</p>
-                            <p>(To be developed)</p>
+                            <p class="font-thin">Latest Resumify (Last 7 Days)</p>
+                            <h1 class="text-2xl">
+                                {{ $resumesCount }}
+                            </h1>
                         </div>
 
                         <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md mt-8">
