@@ -42,8 +42,6 @@ class DashboardController extends Controller
 
         $resumesCount = Resume::whereBetween('created_at', [$startDate, $endDate])->count();
 
-
-
         return view('dashboard', compact('totalResumes', 'averageLength', 'efficiencyPercentage', 'resumesCount'));
     }
 }

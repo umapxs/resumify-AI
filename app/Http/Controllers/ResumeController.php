@@ -37,9 +37,6 @@ class ResumeController extends Controller
 
         // Initialize the summarized variable
         $summarized = null;
-        $englishSummarized = null;
-        $portugueseSummarized = null;
-        $spanishSummarized = null;
 
         try {
             // Make the API call to OpenAI
@@ -51,13 +48,16 @@ class ResumeController extends Controller
 
             // Extract the summarized text from the API response
             $summarized = $response['choices'][0]['text'];
+
         } catch (\Exception $e) {
+
             // Log for debugging purposes
             Log::error($e->getMessage());
             Log::error($e->getTraceAsString());
 
             // Set the summarized variable to null
             $summarized = null;
+
         }
 
         /**
@@ -101,6 +101,7 @@ class ResumeController extends Controller
         $resume->user_id = auth()->id();
         $resume->input_text = $request->input('input_text');
         $resume->summarized = $summarized;
+
         // Loop for every language
         foreach ($languages as $language) {
             $resume->{$language . '_summarized'} = $translationResults[$language] ?? null;

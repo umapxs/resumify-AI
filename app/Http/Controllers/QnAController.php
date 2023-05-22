@@ -44,10 +44,7 @@ class QnAController extends Controller
 
         foreach ($resumes as $resume) {
             $prompt .= "Raw text: " . $resume->input_text . "\n";
-            /* $prompt .= "Summarized text: " . $resume->summarized . "\n"; */
         }
-
-        /* $prompt .= "If the question was complete nonsense, respond with the word 'Unknown'." . "\n"; */
 
         try {
             // Make the API call to OpenAI
